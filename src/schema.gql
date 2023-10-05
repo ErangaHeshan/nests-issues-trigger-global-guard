@@ -1,0 +1,12 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserDetails {
+  id: Float!
+  right: String!
+}
+
+type Query {
+  userDetails: [UserDetails!]!
+}
