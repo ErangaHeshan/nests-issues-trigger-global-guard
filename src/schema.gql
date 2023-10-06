@@ -8,5 +8,7 @@ type UserDetails {
 }
 
 type Query {
+  generateInt: [Int!]!
   userDetails: [UserDetails!]!
+  firstUserDetail: UserDetails!
 }

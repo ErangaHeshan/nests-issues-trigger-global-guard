@@ -16,4 +16,10 @@ export class UserDetailsResolver {
   public async userDetails(): Promise<UserDetails[]> {
     return await this.userDetailsRepository.find();
   }
+
+  @Query(() => UserDetails)
+  public async firstUserDetail(): Promise<UserDetails> {
+    const userDetails = await this.userDetailsRepository.find();
+    return userDetails[0];
+  }
 }
