@@ -30,14 +30,32 @@ $ npm run start:debug
 $ npm run start:prod
 ```
 
-## GraphQL Query
+## GraphQL Queries
 
+### UserDetails
 ```graphql
 query UserDetails {
   userDetails {
     id
     right
   }
+}
+```
+
+### SingleUserDetail
+```graphql
+query SingleUserDetail {
+  firstUserDetail {
+    id
+    right
+  }
+}
+```
+
+### Numbers
+```graphql
+query GenerateNumbers {
+  generateInt
 }
 ```
 
