@@ -22,6 +22,22 @@ import { TypeOrmConfigService } from './typeorm_config_service/typeorm_config_se
         ),
       }),
     }),
+    // I need to make `TypeOrmModule` asynchronous because not all the requests
+    // will need a database connection, and the requests that need will carry
+    // the information to initialize the database connection inside the
+    // authorization header as a JWT.
+    //
+    // e.g.: Check the following payload inside the JWT.
+    //
+    // ```json
+    // {
+    //   "id": "2",
+    //   "database": "test",
+    //   "iat": 1696519539,
+    //   "exp": 1696526739
+    // }
+    // ```
+    //
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,
       dataSourceFactory: async (options) =>
