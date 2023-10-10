@@ -5,9 +5,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule, getRepositoryToken } from '@nestjs/typeorm';
 import { AppResolver } from './app.resolver';
-import { UserDetails } from './entities/user_details/user_details.entity';
-import { UserDetailsModule } from './entities/user_details/user_details.module';
 import { UserRightGuard } from './guards/user_right.guard';
+import { UserDetails } from './modules/user_details/user_details.entity';
+import { UserDetailsModule } from './modules/user_details/user_details.module';
 import { TypeOrmConfigService } from './typeorm_config_service/typeorm_config_service';
 
 @Module({

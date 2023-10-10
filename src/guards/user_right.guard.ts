@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { UserDetails } from 'src/entities/user_details/user_details.entity';
+import { UserDetails } from 'src/modules/user_details/user_details.entity';
 import { Repository } from 'typeorm';
 
 export const RequireRights = Reflector.createDecorator<string[]>();
