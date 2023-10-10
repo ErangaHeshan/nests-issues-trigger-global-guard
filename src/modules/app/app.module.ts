@@ -4,11 +4,11 @@ import { APP_GUARD, Reflector } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule, getRepositoryToken } from '@nestjs/typeorm';
+import { UserRightGuard } from '../../guards/user_right.guard';
+import { TypeOrmConfigService } from '../../typeorm_config_service/typeorm_config_service';
+import { UserDetails } from '../user_details/user_details.entity';
+import { UserDetailsModule } from '../user_details/user_details.module';
 import { AppResolver } from './app.resolver';
-import { UserRightGuard } from './guards/user_right.guard';
-import { UserDetails } from './modules/user_details/user_details.entity';
-import { UserDetailsModule } from './modules/user_details/user_details.module';
-import { TypeOrmConfigService } from './typeorm_config_service/typeorm_config_service';
 
 @Module({
   imports: [
