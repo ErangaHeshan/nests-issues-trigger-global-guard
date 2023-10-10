@@ -1,6 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
+import { InjectRepository } from '@nestjs/typeorm';
 import { UserDetails } from 'src/modules/user_details/user_details.entity';
 import { Repository } from 'typeorm';
 
@@ -13,6 +14,7 @@ export const RequireRights = Reflector.createDecorator<string[]>();
 export class UserRightGuard implements CanActivate {
   constructor(
     private reflector: Reflector,
+    @InjectRepository(UserDetails)
     private userDetailsRepo: Repository<UserDetails>,
   ) {}
 

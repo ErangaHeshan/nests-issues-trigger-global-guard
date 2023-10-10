@@ -1,12 +1,10 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
-import { APP_GUARD, Reflector } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
-import { TypeOrmModule, getRepositoryToken } from '@nestjs/typeorm';
-import { UserRightGuard } from '../../guards/user_right.guard';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '../../typeorm_config_service/typeorm_config_service';
-import { UserDetails } from '../user_details/user_details.entity';
+import { SubscriptionModule } from '../subscription/subscription.module';
 import { UserDetailsModule } from '../user_details/user_details.module';
 import { AppResolver } from './app.resolver';
 
@@ -44,22 +42,8 @@ import { AppResolver } from './app.resolver';
         await TypeOrmConfigService.getOrCreateDataSource(options),
     }),
     UserDetailsModule,
+    SubscriptionModule,
   ],
-  providers: [
-    AppResolver,
-    {
-      provide: APP_GUARD,
-      // I'm using the factory method here since the repository needs to change based
-      // on the customer. We have a separate database for each customer. If I use
-      // `useClass: UserRightGuard` syntax here, I get `undefined` for `reflector`.
-      useFactory: (reflector, repo) => new UserRightGuard(reflector, repo),
-      inject: [Reflector, getRepositoryToken(UserDetails)],
-      // If I make this request scoped, the guard will execute but that is not
-      // the solution I want since not all the requests (e.g.: login) will have
-      // user info in the request header.
-      //
-      // scope: Scope.REQUEST,
-    },
-  ],
+  providers: [AppResolver],
 })
 export class AppModule {}

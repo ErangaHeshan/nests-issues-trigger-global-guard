@@ -12,3 +12,7 @@ type Query {
   userDetails: [UserDetails!]!
   firstUserDetail: UserDetails!
 }
+
+type Mutation {
+  updateCard: Float!
+}
